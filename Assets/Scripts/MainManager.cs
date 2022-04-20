@@ -18,7 +18,14 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
+    public static MainManager Instance;
+    public string playerName;
+
+
+
+
+ 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +64,13 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //SceneManager.LoadScene(0);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(1);
             }
         }
     }
@@ -72,5 +85,17 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+    }
+
+    public void SaveNameScore()
+    {
+        //MainManager.Instance.SaveColor();
+    }
+
+    public void LoadNameScore()
+    {
+        //    MainManager.Instance.LoadColor();
+        //    ColorPicker.SelectColor(MainManager.Instance.TeamColor);
     }
 }
