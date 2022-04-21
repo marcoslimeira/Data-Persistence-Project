@@ -564,8 +564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21c78c00393f9d47922d1c7f64e8d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  textBox: {fileID: 728894331}
+  textBox: {fileID: 748132646}
+  maxRank: {fileID: 1528281069}
+  inputName: 
+  inputScore: 0
 --- !u!1 &490608852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,8 +1033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b04f4ea6734b5548979da03dd0506d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 728894331}
   playerName: 
+  majorScore: 0
+  majorRankedPlayer: 
 --- !u!4 &968988232
 Transform:
   m_ObjectHideFlags: 0
@@ -1041,7 +1044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968988230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 685.7095, y: 290.46, z: -139.79913}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

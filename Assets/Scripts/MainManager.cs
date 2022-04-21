@@ -11,6 +11,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text perfectScore;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -21,6 +22,8 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
     public string playerName;
 
+    
+
 
 
 
@@ -29,6 +32,8 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -43,6 +48,9 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        playerName = MenuManager.Instance.playerName;
+        perfectScore.GetComponent<Text>().text = "Best Score :" + MenuManager.Instance.majorRankedPlayer + ": " + MenuManager.Instance.majorScore;
     }
 
     private void Update()
@@ -70,15 +78,24 @@ public class MainManager : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene(1);
+                MainMenu();
             }
         }
+
+        
     }
 
     void AddPoint(int point)
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+
+        if(m_Points > MenuManager.Instance.majorScore)
+        {
+            MenuManager.Instance.majorScore = m_Points;
+            MenuManager.Instance.majorRankedPlayer = playerName;
+            perfectScore.GetComponent<Text>().text = "Best Score :" + playerName + ": " + m_Points;
+        }
     }
 
     public void GameOver()
@@ -97,5 +114,10 @@ public class MainManager : MonoBehaviour
     {
         //    MainManager.Instance.LoadColor();
         //    ColorPicker.SelectColor(MainManager.Instance.TeamColor);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(1);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,13 +11,13 @@ using UnityEditor;
 
 
 
-[DefaultExecutionOrder(1000)]
+
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
-    public GameObject textBox;
     public string playerName;
-
+    public int majorScore;
+    public string majorRankedPlayer;
 
 
     private void Awake()
@@ -56,22 +57,7 @@ public class MenuManager : MonoBehaviour
 
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
-    void GetPlayerName()
-
-    {
-
-
-    }
-
+   
+    
+    
 }
