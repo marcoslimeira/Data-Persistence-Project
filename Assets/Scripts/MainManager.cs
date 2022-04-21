@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class MainManager : MonoBehaviour
 {
@@ -105,19 +106,48 @@ public class MainManager : MonoBehaviour
 
     }
 
+    class SaveData
+    {
+        public int saveScore;
+        public string saveName;
+    }
+
     public void SaveNameScore()
     {
-        //MainManager.Instance.SaveColor();
+        // Vamos detalhar esse novo método em sequência.Primeiro,
+        // você criou uma nova instância dos dados salvos e preencheu
+        // seu membro da classe de cores da equipe com a variável
+        // TeamColor salva no MainManager:
+
+        SaveData data = new SaveData();
+        data.saveName = MenuManager.Instance.majorRankedPlayer;
+        data.saveScore = MenuManager.Instance.majorScore;
+
+        // Em seguida, você transformou essa instância em JSON com JsonUtility.ToJson
+
+        string json = JsonUtility.ToJson(data);
+
+
+        //Finalmente, você usou o método especial File.WriteAllText para gravar uma string em um arquivo:
+
+        //Para salvar em disco precisamos usar a biblioteca do sistema de entrada e saída - Se não tiver "File" dará erro.
+        
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+
+        //O primeiro parâmetro é o caminho para o arquivo.
+        //Você usou um método do Unity chamado Application.persistentDataPath que
+        //lhe dará uma pasta onde você pode salvar dados que sobreviverão entre a
+        //reinstalação ou atualização do aplicativo e anexar a ele o nome de arquivo savefile.json.
+
+        //Observação: a API Unity Scripting lista os caminhos reais por plataforma .
+
+        //O segundo parâmetro é o texto que você deseja escrever nesse arquivo — neste caso, seu JSON!
     }
 
-    public void LoadNameScore()
-    {
-        //    MainManager.Instance.LoadColor();
-        //    ColorPicker.SelectColor(MainManager.Instance.TeamColor);
-    }
-
+    
     public void MainMenu()
     {
         SceneManager.LoadScene(1);
+        SaveNameScore();
     }
 }
